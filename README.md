@@ -1,21 +1,23 @@
-﻿# Mandelbrot
+﻿<sub>**Datas:** pasta 12/05/2023 · código 12/05/2023 (`Mandelbrot.Rmd`)</sub>
 
-## Data de criação
+# Mandelbrot (visual)
 
-Datas inferidas dos metadados dos arquivos em `C:\R\Mandelbrot` (Windows).
+Experimento numérico tipo **conjunto de Mandelbrot** e heatmap da iteração.
 
-| Referência | Data |
-|------------|------|
-| Pasta criada no disco | 12 de maio de 2023 |
-| Primeiro código ou notebook versionado | 12 de setembro de 2025 (`Mandelbrot.Rmd`) |
-| Repositório Git (commit inicial) | 16 de novembro de 2026 |
+<p align="center"><img src="Rplot.png" alt="Heatmap do experimento Mandelbrot" width="85%" /></p>
 
-Projeto local em `C:\R\Mandelbrot`.
+## O que o código faz
 
-## Como usar
+`Mandelbrot.Rmd`:
 
-Abra os arquivos `.R`, `.Rmd`, `.py` ou o `.Rproj` nesta pasta no RStudio ou no editor de sua preferência.
+- Loop sobre grade no plano complexo, conta iterações até escape.
+- `graph_mandelbrot()` com `ggplot2`.
+- `Rplot.png` — figura exportada; `rmd.txt` — notas auxiliares.
 
-## Dados grandes
+## Dados
 
-Arquivos acima de 100 MB podem estar listados no `.gitignore`; obtenha-os localmente se o código referenciar esses caminhos.
+Gerados na hora (sem CSV).
+
+## Como rodar
+
+Knit `Mandelbrot.Rmd` (pode demorar se a grade for fina).
