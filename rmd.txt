@@ -1,0 +1,52 @@
+```{r}
+library(ggplot2)
+
+is_mandelbrot= function(c, order = 2){
+  z = 0
+  for(n in 1:20){
+    z = z^order + c
+  }
+  if(abs(z) > 2){
+    return(FALSE)
+  }
+  else{
+    return(TRUE)
+  }
+}
+
+get_points = function(n, x = c(-2,1), y = c(-1,1), ...){
+  res = c(2*n, n)
+  xcords = seq(x[1], x[2], length.out = res[1])
+  ycords = seq(y[1], y[2], length.out = res[2])
+  lista = list()
+  count = 1
+  for(n in 1:length(xcords)){
+    for(k in 1:length(ycords)){
+      c = complex(real = xcords[n], imaginary = ycords[k])
+      ismandel = is_mandelbrot(c, ...)
+      df = data.frame(X = xcords[n],
+                      Y = ycords[k],
+                      Color = ismandel)
+      lista[[count]] = df
+      count = count + 1
+    }
+  }
+  df = do.call(rbind, lista)
+  return(df)
+}
+
+graph_mandelbrot = function(n, ...){
+  df = get_points(n, ...)
+  print(1)
+  plot = ggplot(data = df, aes(x = X, y = Y, fill = Color))+
+    geom_tile()+
+    scale_fill_grey(start = 1, end = 0)+
+    theme_classic()+
+    theme(legend.position = "none", axis.title = element_blank())
+  return(plot)
+}
+```
+
+```{r}
+graph_mandelbrot(800, order = 2)
+```
